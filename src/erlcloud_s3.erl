@@ -765,9 +765,9 @@ s3_request2_no_update(Config, Method, Host, Path, Subresource, Params, POSTData,
                                 end
                                ]),
     Response = case Method of
-                   get -> httpc:request(Method, {RequestURI, RequestHeaders}, [], []);
+                   get -> httpc:request(Method, {RequestURI, RequestHeaders}, [{timeout, ?DEFAULT_TIMEOUT}], []);
                    delete -> httpc:request(Method, {RequestURI, RequestHeaders}, [], []);
-                   _ -> httpc:request(Method, {RequestURI, RequestHeaders, ContentType, Body}, [], [])
+                   _ -> httpc:request(Method, {RequestURI, RequestHeaders, ContentType, Body}, [{timeout, ?DEFAULT_TIMEOUT}], [])
                end,
     erlcloud_aws:http_headers_body(Response).
 
